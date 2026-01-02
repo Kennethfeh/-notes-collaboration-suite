@@ -2,12 +2,22 @@
 
 Full-stack demo that mirrors how I ship collaborative tools: a React frontend, Express API, Docker Compose workflow, and integration tests that gate deployments. The backend serves both the API and the compiled frontend bundle in production images.
 
+## TL;DR quick start
+
+```bash
+docker compose up --build -d
+node scripts/integration-test.js
+open http://localhost:5173
+```
+
+The script waits for the backend + frontend, posts a note, fetches it through the API, and ensures the frontend serves the compiled bundle—mirroring what the CI pipeline does.
+
 ## Architecture
 
 - **Frontend (`frontend/`)** – React + Vite app that hits `/api/notes` and `/api/health`. Vitest covers rendering and fetch mocks.
 - **Backend (`backend/`)** – Express API storing in-memory notes, enforcing validation, and surfacing `/api/health` for readiness probes.
 - **Docker Compose (`docker-compose.yml`)** – Spins up the backend (Node) and a build container for the frontend to mimic CI.
-- **Integration tests (`scripts/integration-test.js`)** – Wait for the Compose stack, create a note via the API, and confirm the frontend serves the compiled bundle.
+- **Integration tests (`scripts/integration-test.js`)** – Wait for the Compose stack, create a note via the API, and confirm the frontend serves the compiled bundle. The test walks the same path users do: HTTP client → backend API → in-memory store → frontend build output.
 
 ## Local development
 
