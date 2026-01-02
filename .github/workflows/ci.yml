@@ -1,0 +1,33 @@
+name: Notes Collaboration Suite CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Frontend install/test/build
+        run: |
+          cd frontend
+          npm ci
+          npm run test
+          npm run build
+      - name: Backend install/lint/test
+        run: |
+          cd backend
+          npm ci
+          npm run lint
+          npm test
+      - name: Compose integration test
+        run: |
+          docker compose up -d --build
+          node scripts/integration-test.js
+          docker compose down
