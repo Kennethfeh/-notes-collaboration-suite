@@ -1,6 +1,6 @@
 # Notes Collaboration Suite
 
-Full-stack demo that mirrors how I ship collaborative tools: a React frontend, Express API, Docker Compose workflow, and integration tests that gate deployments. The backend serves both the API and the compiled frontend bundle in production images.
+Full-stack demo illustrating how collaborative tools ship end to end: a React frontend, Express API, Docker Compose workflow, and integration tests that gate deployments. The backend serves both the API and the compiled frontend bundle in production images.
 
 ## TL;DR quick start
 
