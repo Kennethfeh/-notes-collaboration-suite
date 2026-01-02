@@ -51,4 +51,4 @@ Stop containers with `docker compose down`. The production `Dockerfile` uses mul
 2. Deploy to Kubernetes/ECS/Swarm with a single container—the backend serves static assets from `/app/backend/public`.
 3. Use `/api/health` for readiness/liveness probes and to feed uptime dashboards.
 
-This repo doubles as interview-friendly documentation: the README outlines the flow, while code comments and scripts show how I enforce contract tests before promoting a release.
+The README outlines the flow, while code comments and scripts show how to enforce contract tests before promoting a release.
